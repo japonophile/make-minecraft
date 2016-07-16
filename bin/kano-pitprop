@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+# kkano-pitprop
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# Small daemon to switch focus from Minecraft Pi when running make-minecraft
+
+import Xlib.display
+import Xlib.error
+from Xlib import X
+import kano.xwindow
+import Xlib.protocol.event
+import sys
+from Xlib.keysymdef.miscellany import XK_Tab
+from kano.logging import logger
+import os
+
+# We are only run from make-minecraft, so we assume it gets the arguments right
+# argv[1] is the Minecraft Pi window xid
+# argv[2] is the Make Minecraft window xid
+
+mp_xid = int(sys.argv[1], 16)
+mm_xid = int(sys.argv[2], 16)
+
+with kano.xwindow.display() as d:
+
+    # obtain xlib window objects for the two windows
+    s = d.screen()
+    mp = kano.xwindow.find_xwindow_by_id(mp_xid, parent=s.root)
+    mm = kano.xwindow.find_xwindow_by_id(mm_xid, parent=s.root)
+
+    # listen to KeyRelease events for Minecraft Pi
+    mp.change_attributes(event_mask=
+                         X.KeyReleaseMask |
+                         X.EnterWindowMask |
+                         X.LeaveWindowMask |
+                         X.FocusChangeMask)
+
+
+    # make sure the configure is propagated
+    d.sync()
+
+    while True:
+        # wait for an event
+        ev = d.next_event()
+
+        # For each tab press in Minecraft Pi, focus Make Minecraft
+        if isinstance(ev, Xlib.protocol.event.KeyRelease):
+            # Ignoring modifiers by passing zero instead of ev.state
+            kc = d.keycode_to_keysym(ev.detail, 0)
+
+            if kc == XK_Tab:
+                mm.set_input_focus(X.RevertToParent, X.CurrentTime)
+
+        # When minecraft pi grabs the keys, we observe this event.
+        # This is a bit strange bwcause it is the opposite to the one we would expect.
+        # Nevertheless we inform make-minecraft about it so it can change the size.
+        elif isinstance(ev, Xlib.protocol.event.FocusIn) and  ev.window == mp and ev.mode == Xlib.X.NotifyNormal:
+            os.system('dbus-send --session /org/kanoComputing/make_minecraft org.kanoComputing.make_minecraft.goToBlocks')

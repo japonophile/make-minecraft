@@ -1,0 +1,38 @@
+/**
+ * minecraft.css
+ *
+ * Copyright (C) 2014 Kano Computing Ltd
+ * License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+ *
+ * This file contains styling specific to Minecraft project
+ */
+
+/* -----------------------------------------------------------------------
+ Menu Dialog
+----------------------------------------------------------------------- */
+
+div.dialog.challenge .playground {
+    width: 480px;
+}
+
+/* When making the game, an alert is displayed */
+#makingGame {
+    background: url('../media/tab_to_return_background.png');
+    height: 100%;
+}
+
+#makingGameMessage {
+    box-sizing: border-box;
+    position: fixed;
+    height: 70px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2px;
+}
+
+.key {
+    padding: 8px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+}

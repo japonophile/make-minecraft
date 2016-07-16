@@ -1,0 +1,370 @@
+#!/usr/bin/kano-splash /usr/share/make-minecraft/minecraft/media/splash.png /usr/bin/env python
+
+# make-minecraft
+#
+# Copyright (C) 2014-2015 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPLv2
+#
+# The Minecraft App implementation
+
+# Before loading anything else, declare a profiling timepoint
+from kano.profiling import declare_timepoint
+declare_timepoint("load", True)
+
+import os
+import os.path
+import subprocess
+import atexit
+import signal
+import time
+import gtk
+import imp
+import sys
+from kano.utils import run_cmd, has_min_performance, RPI_2_B_SCORE
+import dbus
+from dbus.mainloop.glib import DBusGMainLoop
+
+if __name__ == '__main__' and __package__ is None:
+    dir_path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), '../../kano-blocks'))
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
+from kano_blocks.blocks_app import BlocksApp
+from kano.window import gdk_window_settings, find_window, get_child_windows, BOTTOM_BAR_HEIGHT
+from kano.xwindow import xid_to_str
+from kano.logging import logger
+
+from kano_profile.tracker import Tracker
+kanotracker = Tracker()
+
+MC_WORLDS_PATH = os.path.join(os.path.expanduser('~'),
+                              '.minecraft/games/com.mojang/minecraftWorlds')
+WORLD_PATH = os.path.join(MC_WORLDS_PATH, r'Kano World/')
+CMD_COMPRESS_WORLD = "tar -czf ~/Minecraft-content/%s.tar.gz -C '{}' .".format(WORLD_PATH)
+CMD_EXTRACT_WORLD = "tar -zxf %s -C '{}'".format(WORLD_PATH)
+
+
+class Minecraft(BlocksApp):
+    app_name = 'make-minecraft'
+    _app_icon = '/usr/share/kano-desktop/icons/make-minecraft.png'
+    _title = 'Make Minecraft'
+    _challenge_no = 14
+
+    _module_path = os.path.dirname(os.path.realpath(__file__))
+    _index = os.path.join('file://' + _module_path,
+                          '..', 'minecraft/index.html')
+    _video_filename = 'minecraft'
+
+    _content_dir = 'Minecraft-content'
+    _game_window = 'Minecraft - Pi edition'
+
+    _width = 1.0
+    _height = 0.7
+    _x = 0.0
+    _y = 0.3
+    _disable_minimize = True
+
+    # Uncomment to enable javascript debug
+    # _inspector = True
+
+    def __init__(self, bus):
+        super(Minecraft, self).__init__()
+
+        self._game_script = os.path.join(self._save_dir, 'mc_script.py')
+        self._game_demo_script = os.path.join(self._module_path, 'demo_script.py')
+        self._cfg_loc = '/usr/share/make-minecraft/.minecraft'
+
+        self._overscan = self._get_overscan()
+
+        self._proc = None
+        self._daemon = None
+        self._splash_proc = None
+        self._mc_win = None
+        self._mc_win_child = None
+        self._load_path = ''
+        self._bus = bus
+        self._conserve_cpu = not has_min_performance(RPI_2_B_SCORE)
+        self._err = None
+
+        # Add callback to notify us when minecraft has entered focus
+        self._bus.add_signal_receiver(self.dbus_handler,
+                                      dbus_interface='org.kanoComputing.make_minecraft',
+                                      sender_keyword='sender',
+                                      destination_keyword='destination',
+                                      member_keyword='member',
+                                      path_keyword='path',
+                                      interface_keyword='interface')
+
+        # If local world does not exist > copy it
+        if not os.path.isdir(os.path.join(self._home_dir, '.minecraft')):
+            self.reset_world()
+
+        atexit.register(self._cleanup)
+
+    def dbus_handler(self, *args, **kwargs):
+        """
+        Called on dbus signals
+        """
+        self.switch_to_minecraft()
+
+    def _focus_in(self, win, event, *args):
+        if self._proc:
+            self._view.execute_script("document.getElementById('makingGame').style.display = 'none';")
+            self.minimise_minecraft_window()
+            time.sleep(1)
+
+            self._mc_win.set_keep_above(False)
+
+            if self._conserve_cpu:
+                subprocess.call(['/usr/bin/schedtool', '-D', str(self._proc.pid)])
+
+    def minimise_minecraft_window(self):
+        gdk_window_settings(self._mc_win, self._overscan['left'], self._overscan['top'],
+                            1.0, 0.3, decoration=False)
+        if self._mc_win_child:
+            gdk_window_settings(self._mc_win_child, 0, 0,
+                                1.0, 0.3, decoration=False)
+
+    def maximise_minecraft_window(self):
+        screen = self._mc_win.get_screen()
+        gdk_window_settings(self._mc_win, self._overscan['left'], self._overscan['top'],
+                            1.0, screen.get_height() - BOTTOM_BAR_HEIGHT - 90, decoration=False)
+        if self._mc_win_child:
+            gdk_window_settings(self._mc_win_child, 0, 0,
+                                1.0, screen.get_height() - BOTTOM_BAR_HEIGHT - 90, decoration=False)
+        self._mc_win.set_keep_above(True)
+
+    def switch_to_minecraft(self):
+        if self._proc:
+            if self._conserve_cpu:
+                subprocess.call(['sudo', '/usr/bin/schedtool', '-N', str(self._proc.pid)])
+
+            self.maximise_minecraft_window()
+            self._focus_minecraft()
+            self._view.execute_script("document.getElementById('makingGame').style.display = 'block';")
+
+    def _cleanup(self):
+        if self._proc:
+            self._proc.kill()
+        if self._daemon:
+            self._daemon.kill()
+
+        self._kill_splash()
+
+    def _focus_minecraft(self):
+        self._mc_win.focus()
+        gtk.gdk.window_process_all_updates()
+
+        subprocess.call(['/usr/bin/xdotool', 'mousemove', '--sync',
+                         str(self._overscan['left'] + 10),
+                         str(self._overscan['top'] + 10),
+                         'click', '1'])
+
+    def _run_mc_script(self, script=None):
+        if script is None:
+            script = self._game_script
+
+        for _ in range(0, 10):
+            try:
+                imp.load_source('mc', script)
+                signal.alarm(0)
+
+                # Take a screenshot of the script in action
+                self._screenshot()
+
+                return
+            except Exception as e:
+                # Ensure that MC doesn't quit
+                signal.alarm(0)
+
+                if e.message == 'Timed out':
+                    return
+
+                _, self._err, _ = sys.exc_info()
+                if hasattr(self._err, 'errno') and self._err.errno is 111:
+                    self._err = None
+                    time.sleep(3)
+                else:
+                    return
+
+    def _get_errors(self):
+        if self._err:
+            e = self._err
+
+            if hasattr(e, 'msg'):
+                err_msg = e.msg.title() + ':<br>' \
+                    '&nbsp; At line ' + str(e.lineno) + '<br>' \
+                    '&nbsp; At pos ' + str(e.offset) + '<br>' \
+                    '&nbsp; Of the line \'' + e.text + '\''
+
+                return err_msg
+            elif hasattr(e, 'message'):
+                return e.message
+        else:
+            return 'No errors'
+
+    def _run_mc(self):
+        self._kill_splash()
+        self._proc = subprocess.Popen('/usr/share/make-minecraft/minecraft-pi',
+                                      stdout=subprocess.PIPE)
+        time.sleep(1)
+
+        self._mc_win = win = find_window(pid=self._proc.pid,
+                                         title='Minecraft - Pi edition')
+
+        # FIXME: should get xid of our window properly rather than burrowing into object
+        self._daemon = subprocess.Popen(['/usr/share/make-minecraft/bin/kano-pitprop',
+                                         xid_to_str(self._mc_win.xid),
+                                         xid_to_str(self._win.window.xid)])
+
+        children = get_child_windows(self._mc_win)
+        if len(children):
+            self._mc_win_child = children[0]
+        else:
+            self._mc_win_child = None
+            logger.error("could not find MPi child window")
+
+        self.maximise_minecraft_window()
+        time.sleep(1)
+
+        # Enter the world
+        subprocess.call(['/usr/bin/xdotool', 'key', '--window',
+                         str(win.xid), '--delay', '200', 'Return', 'Return'])
+
+        if self.load_level() is 1:
+            self._run_mc_demo_script()
+
+    def _run_mc_demo_script(self):
+        from threading import Thread
+
+        demo_script = Thread(target=self._run_mc_script,
+                             kwargs={
+                                 'script': self._game_demo_script
+                             })
+        demo_script.setDaemon(True)
+        demo_script.start()
+
+    def _run_splash(self):
+        self._splash_proc = subprocess.Popen(
+            os.path.join(self._module_path, 'splash'))
+
+    def _kill_splash(self):
+        if self._splash_proc:
+            self._splash_proc.kill()
+
+        self._splash_proc = None
+
+    def launch(self, do_script=True):
+        """
+        Switch to Minecraft PI. If do_script is true, run the users' script
+        """
+        self._err = None
+
+        if self._proc is None or self._proc.poll() is not None:
+            self._run_mc()
+
+        self.switch_to_minecraft()
+
+        if do_script is True:  # 'is True' not redundant because javascript.
+            self._run_mc_script()
+
+        return 0
+
+    def reset_world(self, copy=True):
+        # Copy the original world to home dir
+        if copy:
+            # Remove all worlds in the folder
+            run_cmd("rm -r %s/*" % MC_WORLDS_PATH)
+            # Copy the world from /usr/share
+            with open(os.devnull, 'w') as fnull:
+                subprocess.call(['cp', '-rv',
+                                 self._cfg_loc,
+                                 self._home_dir],
+                                stdout=fnull, stderr=fnull)
+        # Check if game running
+        game_running = (self._proc is not None)
+        if game_running:
+            # Kill the game
+            self._cleanup()
+            # Relaunch the game
+            self._run_mc()
+            self._focus_minecraft()
+        return 0
+
+    def run(self):
+        self._run_splash()
+        super(Minecraft, self).run()
+
+    # @Override from blocks_app.py
+    def save_challenge(self, filename, description, xml):
+        # compress the world
+        name_escape_whitespace = filename.replace(" ", "\ ")
+
+        if os.path.exists(WORLD_PATH) and os.listdir(WORLD_PATH):
+            run_cmd(CMD_COMPRESS_WORLD % name_escape_whitespace)
+        else:
+            logger.warn('Minecraft world doesn\'t exist so cannot share it')
+
+        # Call save blocks common function
+        super(Minecraft, self).save_challenge(filename, description, xml)
+
+    # @Override from webapp.py
+    def readFile(self, path):
+        self._load_path = path
+        self.extract_world(path)
+        # Return the loaded xml
+        return super(Minecraft, self).readFile(path)
+
+    def on_web_load(self):
+        if self._load_path:
+            self.extract_world(self._load_path)
+
+    def extract_world(self, path):
+        # remove xml extension and add tar.gz entension
+        tar_file = path.rsplit(".", 1)[0] + '.tar.gz'
+        # check if the MC World file exists
+        if os.path.isfile(tar_file):
+            run_cmd(CMD_EXTRACT_WORLD % tar_file)
+            # Relaunch the game
+            self.reset_world(False)
+
+    @staticmethod
+    def _get_overscan():
+        overscan = {
+            'top': 0,
+            'bottom': 0,
+            'left': 0,
+            'right': 0
+        }
+
+        with open('/boot/config.txt', 'r') as f:
+            overscan_str = 'overscan_'
+
+            for line in f:
+                if line.find(overscan_str) is 0:
+                    eq_sym = line.find('=')
+
+                    side = line[len(overscan_str): eq_sym]
+                    value = int(line[eq_sym + 1: -1])
+
+                    overscan[side] = value
+
+        return overscan
+
+
+# If there is a at least one connected VNC client, show a warning message
+# that the actual Minecraft game can only be seen&played locally
+if os.path.isfile('/usr/bin/kano-vnc'):
+    _, _, rc = run_cmd('/usr/bin/kano-vnc clients')
+    if rc == 0:
+        run_cmd('kano-dialog title="VNC Warning" '
+                'description="Minecraft game cannot be played remotely, but you can still work on your challenges."')
+
+
+# Connect to dbus to obtain information about minecraft pi from kano-pitprop
+dbus_loop = DBusGMainLoop(set_as_default=True)
+bus = dbus.SessionBus(mainloop=dbus_loop)
+
+mc = Minecraft(bus)
+mc.run()

@@ -1,0 +1,2298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level>
+    <!-- Challenge 1 - Make -->
+    <project>
+        <step>
+            <position>#runButton</position>
+            <tip>Click the &lt;b&gt;Make&lt;/b&gt; below to begin</tip>
+            <direction>d</direction>
+            <progressor>buttonPress+#runButton</progressor>
+        </step>
+    </project>
+
+     <!-- Challenge 2 - Create floor -->
+    <project>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>We use &lt;b&gt;Setters&lt;/b&gt; to set hundreds of blocks, like magic!</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setFloor</position>
+            <tip>Click and drag the &lt;b&gt;Set Floor&lt;/b&gt; block into the workspace</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setFloor</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Now we need &lt;b&gt;Numbers&lt;/b&gt; for the floor's length and width</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-math_number</position>
+            <tip>Grab a &lt;b&gt;Number&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+math_number</progressor>
+        </step>
+        <step>
+            <position>previousInput+X</position>
+            <tip>Connect it to &lt;b&gt;Length&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setFloor+math_number</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Click inside the block and type &lt;b&gt;10&lt;/b&gt;. This tells the Setter to make a floor 10 blocks long</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+NUM+>0</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Now we need a &lt;b&gt;Number&lt;/b&gt; for width</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-math_number</position>
+            <tip>Grab a &lt;b&gt;Number&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+math_number</progressor>
+        </step>
+        <step>
+            <position>previous^Input+Z</position>
+            <tip>Connect it to &lt;b&gt;width&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setFloor+math_number</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Click inside the block and type &lt;b&gt;10&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+NUM+>0</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>To choose our floor type, we need a &lt;b&gt;Getter&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Connect it to &lt;b&gt;type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setFloor+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>It's diamond time! Select &lt;b&gt;diamond&lt;/b&gt; from the dropdown</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Diamond</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>Click &lt;b&gt;Make&lt;/b&gt; to build your world and run the code</tip>
+            <direction>d</direction>
+            <progressor>#runButton</progressor>
+        </step>
+    </project>
+
+     <!-- Challenge 3 - The Biggest Block -->
+    <project>
+        <!-- Create blocks -->
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Great start! Let's create more blocks with code. Click &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Let's use &lt;b&gt;Numbers&lt;/b&gt; to choose where the blocks will appear</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Connect the &lt;b&gt;x-y-z&lt;/b&gt; block to &lt;b&gt;Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;15&lt;/b&gt;, so the blocks will appear 15 above you</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+15</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Now we need a number for width (x), height (y) and length (z) of our block. Click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block.</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;15&lt;/b&gt; (width)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+15</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Good! Now set the &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;15&lt;/b&gt; (height)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+15</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Finally, set the &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;15&lt;/b&gt; (length)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+15</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Let's get a material for our blocks. Click on the &lt;b&gt;Getters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Plug it into &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Select &lt;b&gt;Water&lt;/b&gt; from the dropdown</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Water</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>Yes! Click &lt;b&gt;Make&lt;/b&gt; to bring your program to life</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+
+     <!-- Challenge 4 - Build a Tunnel -->
+    <project>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Go to &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab a &lt;b&gt;Set Blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Add an &lt;b&gt;x-y-z&lt;/b&gt; blocks for your tunnel's position</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Connect to &lt;b&gt;Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Add an &lt;b&gt;x-y-z&lt;/b&gt; block for the tunnel's size</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect it to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;5&lt;/b&gt; (tunnel's width)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+5</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;4&lt;/b&gt; (tunnel's height)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+4</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;10&lt;/b&gt; (tunnel's length)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+10</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Then click &lt;b&gt;Getters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <!-- Create blocks -->
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Connect it to &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Pick &lt;b&gt;Stone&lt;/b&gt; from the dropdown. This will make the tunnel sides.</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Stone</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Now let's set some air to make a tunnel. Click &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab another &lt;b&gt;Set Blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>previous^Input+nextConnection</position>
+            <tip>Connect it to the bottom of your first Set blocks function</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Add an &lt;b&gt;x-y-z&lt;/b&gt; block for the air block's position</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousChild+nextConnection+previousInput+POS</position>
+            <tip>Connect to &lt;b&gt;Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;2&lt;/b&gt; so it will go through the stone block.</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+2</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Then, click &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Add an &lt;b&gt;x-y-z&lt;/b&gt; block for the size of the air blocks</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;3&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+3</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;3&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+3</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;10&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+10</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Click &lt;b&gt;Getters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Plug into &lt;b&gt;Type&lt;/b&gt;, and choose &lt;b&gt;Air&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>Click &lt;b&gt;Make&lt;/b&gt; to complete your tunnel</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+
+     <!-- Challenge 5 - Build a House -->
+    <project>
+        <!-- Create blocks -->
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Time to build a home! Go to &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Drag &lt;b&gt;Set blocks&lt;/b&gt; to the workspace</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Connect it to &lt;b&gt;Postion&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;2&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+2</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;-1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+-1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Click &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;9&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+9</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;4&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+4</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;7&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+7</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Click &lt;b&gt;Getters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <!-- Create blocks -->
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Connect it to &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Select &lt;b&gt;Wood&lt;/b&gt; from the dropdown.</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Wood</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Now we need to make a window. Click &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab a &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>previous^Input+nextConnection</position>
+            <tip>Connect it</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Then click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousChild+nextConnection+previousInput+POS</position>
+            <tip>Connect to &lt;b&gt;Postion&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;2&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+2</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Now we need a &lt;b&gt;Number&lt;/b&gt; for the window's size</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;4&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+4</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;2&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+2</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;6&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+6</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Finally, let's choose a material to use. Go to &lt;b&gt;Getters&lt;/b&gt;.</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+
+        <!-- Create blocks -->
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Connect it to &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+         <step>
+            <position>previous</position>
+            <tip>Now select &lt;b&gt;Glass&lt;/b&gt; from the dropdown</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Glass</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Now we just need to make some air space inside! Click &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab a &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>previous^Input+nextConnection</position>
+            <tip>Connect it to the bottom of your program</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Now &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block for the air's position</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousChild+nextConnection+previousInput+POS</position>
+            <tip>Connect to &lt;b&gt;Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;3&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+3</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Now let's get &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the  &lt;b&gt;x&lt;/b&gt; to  &lt;b&gt;7&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+7</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the  &lt;b&gt;y&lt;/b&gt; to  &lt;b&gt;2&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+2</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the  &lt;b&gt;z&lt;/b&gt; to  &lt;b&gt;5&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+5</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Click &lt;b&gt;Getters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Almost done! Grab a &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Plug into &lt;b&gt;Type&lt;/b&gt;, make sure it's &lt;b&gt;Air&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>&lt;b&gt;Make&lt;/b&gt;</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+
+     <!-- Challenge 6 - Make a Volcano -->
+    <project>
+        <!-- Create blocks -->
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Volcano = tower + lava. First, make the tower. Go to &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab &lt;b&gt;Set blocks&lt;/b&gt; and add it to the workspace</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>We'll need a &lt;b&gt;Number&lt;/b&gt; for its position</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Connect to &lt;b&gt;Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Click and set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+1</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Now another &lt;b&gt;Number&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block for the volcano size</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set tower &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt; (width)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+1</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;10&lt;/b&gt; (height)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+10</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt; (length)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Now we need a &lt;b&gt;Getter&lt;/b&gt; for the tower's material</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab a &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Connect to &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <!-- Create blocks -->
+        <step>
+            <position>previous</position>
+            <tip>Click select &lt;b&gt;Stone&lt;/b&gt; from the dropdown.</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Stone</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Now let's grab a &lt;b&gt;Setter&lt;/b&gt; for some lava!</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab a &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>previous^Input+nextConnection</position>
+            <tip>Connect it to &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Then, click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block for the lava's position</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousChild+nextConnection+previousInput+POS</position>
+            <tip>Connect it</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>We want it to appear at the top of the tower. Set the &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+1</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;11&lt;/b&gt;, one block above the top of the tower</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+11</progressor>
+        </step>
+
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt; (height)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Then, click &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Add an &lt;b&gt;x-y-z&lt;/b&gt; block for the size</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>We want to make a block of lava, which will start to flow. Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt; </tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+1</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+1</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Next, click &lt;b&gt;Getters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Plug into &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Pick &lt;b&gt;Lava&lt;/b&gt; from the dropdown</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Lava</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>&lt;b&gt;Make&lt;/b&gt;</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+
+     <!-- Challenge 7 - Hello World -->
+    <project>
+        <step>
+            <position>div.blocks-tree-actions</position>
+            <tip>You can make Minecraft type messages with code! Click on &lt;b&gt;Actions&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-actions</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_postToChat</position>
+            <tip>Grab &lt;b&gt;postToChat&lt;/b&gt; and drag it into the workspace</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_postToChat</progressor>
+        </step>
+        <step>
+            <position></position>
+            <tip>Type a message in between the speech marks</tip>
+            <direction></direction>
+            <progressor>textInputChange+text+TEXT+!=''</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>Click &lt;b&gt;Make&lt;/b&gt;</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+
+  <!-- Challenge 8 - Teleport -->
+    <project>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Now let's use a function to teleport! Click on &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_player_setTilePos</position>
+            <tip>Grab the &lt;b&gt;Set Player Position&lt;/b&gt; block. This moves your player anywhere on the map!</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_player_setTilePos</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>In Minecraft, positions in the world are controlled by &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab the &lt;b&gt;x-y-z&lt;/b&gt; block. X is for sideways, Y is up and down, Z is for front + back</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Plug into the &lt;b&gt;Set Player Position&lt;/b&gt; block, so they can work together</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_player_setTilePos+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>To fly up in the sky, set &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;50&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+>=10</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>Hit &lt;b&gt;Make&lt;/b&gt;!</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+
+    <!-- Challenge 9 - Sky Jail -->
+    <project>
+        <!-- Create blocks -->
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Combine blocks + teleport to make a sky jail! Click &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>We need  &lt;b&gt;Numbers&lt;/b&gt; for the jail's position</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Connect the &lt;b&gt;x-y-z&lt;/b&gt; block to &lt;b&gt;Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;40&lt;/b&gt; to put the jail in the sky</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+40</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block for the jail's size</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;6&lt;/b&gt; (width)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+6</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;4&lt;/b&gt; (height)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+4</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;6&lt;/b&gt; (length)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+6</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Now we need a &lt;b&gt;Getter&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Plug it into &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Select &lt;b&gt;Fence&lt;/b&gt; from the dropdown</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Fence</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Now let's grab a &lt;b&gt;Setter&lt;/b&gt; to create jail's insides</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>previous^Input+nextConnection</position>
+            <tip>Connect it under your &lt;b&gt;Set blocks&lt;/b&gt; function</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>We'll need a &lt;b&gt;Number&lt;/b&gt; for it's position</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousChild+nextConnection+previousInput+POS</position>
+            <tip>Connect to &lt;b&gt;Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+1</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;41&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+41</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;4&lt;/b&gt; (width)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+4</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;2&lt;/b&gt; (height)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+2</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;4&lt;/b&gt; (length)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+4</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Now we need a &lt;b&gt;Getter&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Plug it into &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>It's time to teleport! Click on &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_player_setTilePos</position>
+            <tip>Grab &lt;b&gt;Set Player Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_player_setTilePos</progressor>
+        </step>
+        <step>
+            <position>previous^Input+nextConnection</position>
+            <tip>Connect it under your &lt;b&gt;Set blocks&lt;/b&gt; function</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_player_setTilePos</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Click &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Plug into the &lt;b&gt;Set Player Position&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_player_setTilePos+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;3&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+3</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;y&lt;/b&gt; to &lt;b&gt;42&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+y+42</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;3&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+3</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>Ready to go! Click &lt;b&gt;Make&lt;/b&gt;</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+
+  <!-- Challenge 10 - Instant Farm -->
+    <project>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Building farms is boring - make them faster with code! Go to &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab a &lt;b&gt;Set Blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Add an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Connect to &lt;b&gt;Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;2&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+2</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Add an &lt;b&gt;x-y-z&lt;/b&gt; block for the farm's size</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect it to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;9&lt;/b&gt; (farm's width)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+9</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;9&lt;/b&gt; (tunnel's length)</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+9</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Then click &lt;b&gt;Getters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <!-- Create blocks -->
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Connect it to &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Pick &lt;b&gt;Fence&lt;/b&gt; from the dropdown. This will make the farm's sides.</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Fence</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Now let's plant some flowers! Click &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab another &lt;b&gt;Set Blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>previous^Input+nextConnection</position>
+            <tip>Connect it to the bottom of your first Set blocks function</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Add an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousChild+nextConnection+previousInput+POS</position>
+            <tip>Connect to &lt;b&gt;Position&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;3&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+3</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+1</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Then click &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Add an &lt;b&gt;x-y-z&lt;/b&gt; block for the size of the flower bed</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect to &lt;b&gt;Size&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;x&lt;/b&gt; to &lt;b&gt;7&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+x+7</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Set the &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;7&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+z+7</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Click &lt;b&gt;Getters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Plug into &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Pick &lt;b&gt;Flowers&lt;/b&gt; from the dropdown</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Flowers</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>Time to farm - click &lt;b&gt;Make&lt;/b&gt;</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+
+  <!-- Project 11 - Lava trail -->
+    <project>
+        <step>
+            <position>div.blocks-tree-loops</position>
+            <tip>You're becoming a master. Now let's make a fierce, fiery lava trail. We'll use &lt;b&gt;Loops&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-loops</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-controls_whileUntil</position>
+            <tip>Grab the &lt;b&gt;While&lt;/b&gt; block. Code inside a While keeps repeating as long as the While condition is true.</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+controls_whileUntil</progressor>
+        </step>
+        <step>
+            <position></position>
+            <tip>Change while in the drop down to &lt;b&gt;until&lt;/b&gt;. Now the code will keep repeating Until something happens.</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+MODE+until</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Click &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab a &lt;b&gt;Set Blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>previousInput+DO</position>
+            <tip>Add this into the loop's &lt;b&gt;Do&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+controls_whileUntil+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Click &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Connect to &lt;b&gt;Position&lt;/b&gt;.</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Click &lt;b&gt;Numbers&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab another &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Connect it to &lt;b&gt;Size&lt;/b&gt;.</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Let's get some lava! Click &lt;b&gt;Getters&lt;/b&gt;.</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Connect to &lt;b&gt;Type&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Choose &lt;b&gt;Lava&lt;/b&gt; from the drop down</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Lava</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-actions</position>
+            <tip>We want the Until to wait a bit before setting it again. For this we need an &lt;b&gt;Action&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-actions</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_sleep</position>
+            <tip>Grab a &lt;b&gt;Sleep&lt;/b&gt; block. This simply tells the program to wait.</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_sleep</progressor>
+        </step>
+        <step>
+            <position>previous^^Input+nextConnection</position>
+            <tip>Connect the &lt;b&gt;Sleep&lt;/b&gt; beneath &lt;b&gt;Set Blocks&lt;/b&gt;.</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_sleep</progressor>
+        </step>
+        <step>
+            <position>previousChild+NUM+previous</position>
+            <tip>Set the sleep time to &lt;b&gt;3&lt;/b&gt;. Each time lava is set, the program will wait 3 seconds before doing it again.</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+math_number+NUM+3</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>&lt;b&gt;Make&lt;/b&gt;</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+
+    <!-- Project 12 - Freeze -->
+    <project>
+        <step>
+            <position>div.blocks-tree-loops</position>
+            <tip>Let it go and freeze the world! Click &lt;b&gt;Loops&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-loops</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-controls_whileUntil</position>
+            <tip>Grab a &lt;b&gt;While&lt;/b&gt; loop</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+controls_whileUntil</progressor>
+        </step>
+        <step>
+            <position></position>
+            <tip>Change the drop down to &lt;b&gt;Until&lt;/b&gt;.</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+MODE+until</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-actions</position>
+            <tip>Now we need to set up our Sleep (waiting time). Click &lt;b&gt;Actions&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-actions</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_sleep</position>
+            <tip>Grab a &lt;b&gt;Sleep&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_sleep</progressor>
+        </step>
+        <step>
+            <position>previousInput+DO</position>
+            <tip>Plug it inside the &lt;b&gt;do&lt;/b&gt; of the loop</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+controls_whileUntil+api_sleep</progressor>
+        </step>
+        <step>
+            <position>previousChild+NUM+previous</position>
+            <tip>Click and set the sleep time to &lt;b&gt;0.2&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+math_number+NUM+0.2</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-logic</position>
+            <tip>Now we need &lt;b&gt;Logic&lt;/b&gt; to figure out if you're touching grass</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-logic</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-controls_if</position>
+            <tip>Grab an If-Do conditional block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+controls_if</progressor>
+        </step>
+        <step>
+            <position>previous^Input+nextConnection</position>
+            <tip>Connect under Sleep.</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_sleep+controls_if</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-logic</position>
+            <tip>Now we want to check if the block next to you is the water type. Click Logic.</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-logic</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-logic_compare</position>
+            <tip>Grab a Comparison block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+logic_compare</progressor>
+        </step>
+        <step>
+            <position>previousInput+IF0</position>
+            <tip>Plug it into the If as the condition.</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+controls_if+logic_compare</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Now we need a Getter that detects the block that's under our feet</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_getBlock</position>
+            <tip>Grab Get Block, which checks the type of block you're standing on</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_getBlock</progressor>
+        </step>
+        <step>
+            <position>previousInput+A</position>
+            <tip>Plug it into the left side of the condition.</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+logic_compare+api_getBlock</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Now we need a type to compare it to. Click Getters.</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab Block Type</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+B</position>
+            <tip>Plug it into the right side of the condition</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+logic_compare+api_blockType</progressor>
+        </step>
+         <step>
+            <position>previous</position>
+            <tip>Select Water from the drop down. Now the conditional will be activated if you're standing on water.</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Water</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>If so, we want to set this block to ice. Go to Setters.</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab the trusty Set Blocks block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>previous^^Input+DO0</position>
+            <tip>Plug it in as the 'do' of your conditional.</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+controls_if+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>As usual, we'll need Numbers for size and position</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab an X-Y-Z</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previousInput+POS</position>
+            <tip>Plug it into Position. Remember that 0-0-0 will make a block where you're standing.</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz+</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-numbers</position>
+            <tip>Back to Numbers...</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_xyz</position>
+            <tip>Grab another X-Y-Z</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_xyz</progressor>
+        </step>
+        <step>
+            <position>previous^Input+SIZE</position>
+            <tip>Plug it into Size. Remember that 0-0-0 will make a single block.</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+        </step>
+        <step>
+            <position>div.blocks-tree-getters</position>
+            <tip>Now let's choose our material with Getters</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-getters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_blockType</position>
+            <tip>Grab Block Type</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous^Input+ID</position>
+            <tip>Plug into Type</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+        </step>
+        <step>
+            <position>previous</position>
+            <tip>Choose Ice from the drop down</tip>
+            <direction>l</direction>
+            <progressor>dropdownInputChange+TYPE+Ice</progressor>
+        </step>
+        <step>
+            <position>#runButton</position>
+            <tip>&lt;b&gt;Make&lt;/b&gt;</tip>
+            <direction>d</direction>
+            <progressor>buttonPress+#runButton</progressor>
+        </step>
+    </project>
+
+    <!-- Project 13 - Water Slide -->
+    <project>
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>It's time for a big splash - a water slide! Click on &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-setVariable</position>
+            <tip>Grab a &lt;b&gt;Var&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+setVariable</progressor>
+        </step>
+        <!-- Loop -->
+        <step>
+            <position>div.blocks-tree-loops</position>
+            <tip>We'll need a repeat. Click on &lt;b&gt;Loops&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-loops</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-controls_repeat_ext</position>
+            <tip>Grab a &lt;b&gt;Repeat&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+controls_repeat_ext</progressor>
+        </step>
+        <step>
+            <position>previousInput+nextConnection</position>
+            <tip>Connect it under the &lt;b&gt;var&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+setVariable+controls_repeat_ext</progressor>
+        </step>
+        <step>
+            <position>previousChild+NUM+previous</position>
+            <tip>Change the number to &lt;b&gt;20&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>textInputChange+math_number+NUM+20</progressor>
+        </step>
+        <!-- Do loop -->
+            <!-- Set blocks -->
+            <step>
+                <position>div.blocks-tree-setters</position>
+                <tip>Click on &lt;b&gt;Setters&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>buttonPress+div.blocks-tree-setters</progressor>
+            </step>
+            <step>
+                <position>g.flyout.svgBlock-api_setBlocks</position>
+                <tip>Grab our old friend &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>blockAdd+api_setBlocks</progressor>
+            </step>
+            <step>
+                <position>previousInput+DO</position>
+                <tip>Put it inside the &lt;b&gt;repeat&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>blockConnect+controls_repeat_ext+api_setBlocks</progressor>
+            </step>
+
+                <!-- Position -->
+                <step>
+                    <position>div.blocks-tree-numbers</position>
+                    <tip>Click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+                </step>
+                <step>
+                    <position>g.flyout.svgBlock-api_xyzPlugIn</position>
+                    <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+                    <direction>l</direction>
+                    <progressor>blockAdd+api_xyzPlugIn</progressor>
+                </step>
+                <step>
+                    <position>previousInput+POS</position>
+                    <tip>Connect it to &lt;b&gt;Position&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>blockConnect+api_setBlocks+api_xyzPlugIn</progressor>
+                </step>
+                <!-- Position values -->
+                    <!-- x - get var -->
+                    <step>
+                        <position>div.blocks-tree-getters</position>
+                        <tip>Now go to &lt;b&gt;Setters&lt;/b&gt;</tip>
+                        <direction>l</direction>
+                        <progressor>buttonPress+div.blocks-tree-getters</progressor>
+                    </step>
+                    <step>
+                        <position>g.flyout.svgBlock-getVariable</position>
+                        <tip>Grab an &lt;b&gt;x variable&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockAdd+getVariable</progressor>
+                    </step>
+                    <step>
+                        <position>previousInput+X</position>
+                        <tip>Now put your variable as the &lt;b&gt;x&lt;/b&gt; in your &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockConnect+api_xyzPlugIn+getVariable</progressor>
+                    </step>
+
+                    <!-- y - get var -->
+                    <step>
+                        <position>div.blocks-tree-getters</position>
+                        <tip>Go back to &lt;b&gt;Getters&lt;/b&gt;</tip>
+                        <direction>l</direction>
+                        <progressor>buttonPress+div.blocks-tree-getters</progressor>
+                    </step>
+                    <step>
+                        <position>g.flyout.svgBlock-getVariable</position>
+                        <tip>Grab another &lt;b&gt;x variable&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockAdd+getVariable</progressor>
+                    </step>
+                    <step>
+                        <position>previous^Input+Y</position>
+                        <tip>This time, put the variable as the &lt;b&gt;y&lt;/b&gt; in your &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockConnect+api_xyzPlugIn+getVariable</progressor>
+                    </step>
+
+                <!-- Size input -->
+                <step>
+                    <position>div.blocks-tree-numbers</position>
+                    <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+                </step>
+                <step>
+                    <position>g.flyout.svgBlock-api_xyz</position>
+                    <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+                    <direction>l</direction>
+                    <progressor>blockAdd+api_xyz</progressor>
+                </step>
+                <step>
+                    <position>previous^^Input+SIZE</position>
+                    <tip>Connect it to &lt;b&gt;Size&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+                </step>
+                <step>
+                    <position>previous</position>
+                    <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>textInputChange+api_xyz+z+===1</progressor>
+                </step>
+
+                <!-- Block Type -->
+                <step>
+                    <position>div.blocks-tree-getters</position>
+                    <tip>Go to &lt;b&gt;Getters&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>buttonPress+div.blocks-tree-getters</progressor>
+                </step>
+                <step>
+                    <position>g.flyout.svgBlock-api_blockType</position>
+                    <tip>Grab a &lt;b&gt;Block type&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>blockAdd+api_blockType</progressor>
+                </step>
+                <step>
+                    <position>previous^Input+ID</position>
+                    <tip>Connect it to &lt;b&gt;Type&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+                </step>
+                <step>
+                    <position>previous</position>
+                    <tip>Change the type to &lt;b&gt;Stone&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>dropdownInputChange+TYPE+Stone</progressor>
+                </step>
+
+            <!-- increment var -->
+            <step>
+                <position>div.blocks-tree-setters</position>
+                <tip>Looking good! Click on &lt;b&gt;Setters&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>buttonPress+div.blocks-tree-setters</progressor>
+            </step>
+            <step>
+                <position>g.flyout.svgBlock-setVariable</position>
+                <tip>Grab a &lt;b&gt;Var&lt;/b&gt; block</tip>
+                <direction>l</direction>
+                <progressor>blockAdd+setVariable</progressor>
+            </step>
+            <step>
+                <position>previous^^Input+nextConnection</position>
+                <tip>Connect it under the &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>blockConnect+api_setBlocks+setVariable</progressor>
+            </step>
+                <!-- var = var + 1 -->
+                <step>
+                    <position>div.blocks-tree-numbers</position>
+                    <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+                </step>
+                <step>
+                    <position>g.flyout.svgBlock-math_arithmetic</position>
+                    <tip>Grab an &lt;b&gt;addition&lt;/b&gt; block</tip>
+                    <direction>l</direction>
+                    <progressor>blockAdd+math_arithmetic</progressor>
+                </step>
+                <step>
+                    <position>previousInput+VALUE</position>
+                    <tip>Connect it inside the &lt;b&gt;x var&lt;/b&gt; block</tip>
+                    <direction>l</direction>
+                    <progressor>blockConnect+setVariable+math_arithmetic</progressor>
+                </step>
+                    <!-- get var -->
+                    <step>
+                        <position>div.blocks-tree-getters</position>
+                        <tip>Click on &lt;b&gt;Getters&lt;/b&gt;</tip>
+                        <direction>l</direction>
+                        <progressor>buttonPress+div.blocks-tree-getters</progressor>
+                    </step>
+                    <step>
+                        <position>g.flyout.svgBlock-getVariable</position>
+                        <tip>Grab a &lt;b&gt;Var&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockAdd+getVariable</progressor>
+                    </step>
+                    <step>
+                        <position>previousInput+A</position>
+                        <tip>Plug the &lt;b&gt;Var&lt;/b&gt; into the &lt;b&gt;add&lt;/b&gt;</tip>
+                        <direction>l</direction>
+                        <progressor>blockConnect+math_arithmetic+getVariable</progressor>
+                    </step>
+
+                    <!-- increment var -->
+                    <step>
+                        <position>div.blocks-tree-numbers</position>
+                        <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+                        <direction>l</direction>
+                        <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+                    </step>
+                    <step>
+                        <position>g.flyout.svgBlock-math_number</position>
+                        <tip>Grab a &lt;b&gt;number&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockAdd+math_number</progressor>
+                    </step>
+                    <step>
+                        <position>previous^Input+B</position>
+                        <tip>Connect it to the &lt;b&gt;addition&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockConnect+math_arithmetic+math_number</progressor>
+                    </step>
+                    <step>
+                        <position>previous+NUM</position>
+                        <tip>Set it to &lt;b&gt;1&lt;/b&gt;</tip>
+                        <direction>l</direction>
+                        <progressor>textInputChange+math_number+NUM+1</progressor>
+                    </step>
+
+        <!-- Waterfall block -->
+        <step>
+            <position>div.blocks-tree-setters</position>
+            <tip>Almost there! Go to &lt;b&gt;Setters&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>buttonPress+div.blocks-tree-setters</progressor>
+        </step>
+        <step>
+            <position>g.flyout.svgBlock-api_setBlocks</position>
+            <tip>Grab a &lt;b&gt;Set blocks&lt;/b&gt;</tip>
+            <direction>l</direction>
+            <progressor>blockAdd+api_setBlocks</progressor>
+        </step>
+        <step>
+            <position>previous^^^Input+nextConnection</position>
+            <tip>Connect it to the bottom of the &lt;b&gt;repeat&lt;/b&gt; block</tip>
+            <direction>l</direction>
+            <progressor>blockConnect+controls_repeat_ext+api_setBlocks</progressor>
+        </step>
+            <!-- Position -->
+            <step>
+                <position>div.blocks-tree-numbers</position>
+                <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+            </step>
+            <step>
+                <position>g.flyout.svgBlock-api_xyzPlugIn</position>
+                <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+                <direction>l</direction>
+                <progressor>blockAdd+api_xyzPlugIn</progressor>
+            </step>
+            <step>
+                <position>previousInput+POS</position>
+                <tip>Connect to &lt;b&gt;Position&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>blockConnect+api_setBlocks+api_xyzPlugIn</progressor>
+            </step>
+            <!-- Position values -->
+                <!-- x - get var -->
+                <step>
+                    <position>div.blocks-tree-getters</position>
+                    <tip>Go to &lt;b&gt;Getters&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>buttonPress+div.blocks-tree-getters</progressor>
+                </step>
+                <step>
+                    <position>g.flyout.svgBlock-getVariable</position>
+                    <tip>Grab a &lt;b&gt;Var&lt;/b&gt; block</tip>
+                    <direction>l</direction>
+                    <progressor>blockAdd+getVariable</progressor>
+                </step>
+                <step>
+                    <position>previousInput+X</position>
+                    <tip>Connect it to the &lt;b&gt;x&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>blockConnect+api_xyzPlugIn+getVariable</progressor>
+                </step>
+
+                <!-- y = var + 1 -->
+                <!-- arith -->
+                <step>
+                    <position>div.blocks-tree-numbers</position>
+                    <tip>Click on &lt;b&gt;Numbers&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+                </step>
+                <step>
+                    <position>g.flyout.svgBlock-math_arithmetic</position>
+                    <tip>Grab an &lt;b&gt;add&lt;/b&gt; block</tip>
+                    <direction>l</direction>
+                    <progressor>blockAdd+math_arithmetic</progressor>
+                </step>
+                <step>
+                    <position>previous^Input+Y</position>
+                    <tip>Connect it to &lt;b&gt;y&lt;/b&gt;</tip>
+                    <direction>l</direction>
+                    <progressor>blockConnect+api_xyzPlugIn+math_arithmetic</progressor>
+                </step>
+                    <!-- get var -->
+                    <step>
+                        <position>div.blocks-tree-getters</position>
+                        <tip>Go to &lt;b&gt;Getters&lt;/b&gt;</tip>
+                        <direction>l</direction>
+                        <progressor>buttonPress+div.blocks-tree-getters</progressor>
+                    </step>
+                    <step>
+                        <position>g.flyout.svgBlock-getVariable</position>
+                        <tip>Grab a &lt;b&gt;Var&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockAdd+getVariable</progressor>
+                    </step>
+                    <step>
+                        <position>previousInput+A</position>
+                        <tip>Connect it to the &lt;b&gt;addition&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockConnect+math_arithmetic+getVariable</progressor>
+                    </step>
+
+                    <!-- increment var -->
+                    <step>
+                        <position>div.blocks-tree-numbers</position>
+                        <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+                        <direction>l</direction>
+                        <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+                    </step>
+                    <step>
+                        <position>g.flyout.svgBlock-math_number</position>
+                        <tip>Grab a &lt;b&gt;number&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockAdd+math_number</progressor>
+                    </step>
+                    <step>
+                        <position>previous^Input+B</position>
+                        <tip>Connect it to the &lt;b&gt;addition&lt;/b&gt; block</tip>
+                        <direction>l</direction>
+                        <progressor>blockConnect+math_arithmetic+math_number</progressor>
+                    </step>
+                    <step>
+                        <position>previous+NUM</position>
+                        <tip>Set it to &lt;b&gt;1&lt;/b&gt;</tip>
+                        <direction>l</direction>
+                        <progressor>textInputChange+math_number+NUM+1</progressor>
+                    </step>
+
+            <!-- Size input -->
+            <step>
+                <position>div.blocks-tree-numbers</position>
+                <tip>Go to &lt;b&gt;Numbers&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>buttonPress+div.blocks-tree-numbers</progressor>
+            </step>
+            <step>
+                <position>g.flyout.svgBlock-api_xyz</position>
+                <tip>Grab an &lt;b&gt;x-y-z&lt;/b&gt; block</tip>
+                <direction>l</direction>
+                <progressor>blockAdd+api_xyz</progressor>
+            </step>
+            <step>
+                <position>previous^^^Input+SIZE</position>
+                <tip>Connect it to &lt;b&gt;Size&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>blockConnect+api_setBlocks+api_xyz</progressor>
+            </step>
+            <step>
+                <position>previous</position>
+                <tip>Set &lt;b&gt;z&lt;/b&gt; to &lt;b&gt;1&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>textInputChange+api_xyz+z+===1</progressor>
+            </step>
+
+            <!-- Block Type -->
+            <step>
+                <position>div.blocks-tree-getters</position>
+                <tip>Go to &lt;b&gt;Getters&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>buttonPress+div.blocks-tree-getters</progressor>
+            </step>
+            <step>
+                <position>g.flyout.svgBlock-api_blockType</position>
+                <tip>Grab &lt;b&gt;Block type&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>blockAdd+api_blockType</progressor>
+            </step>
+            <step>
+                <position>previous^Input+ID</position>
+                <tip>Connect it to &lt;b&gt;Type&lt;/b&gt;</tip>
+                <direction>l</direction>
+                <progressor>blockConnect+api_setBlocks+api_blockType</progressor>
+            </step>
+            <step>
+                <position>previous</position>
+                <tip>Set type to Water</tip>
+                <direction>l</direction>
+                <progressor>dropdownInputChange+TYPE+Water</progressor>
+            </step>
+
+        <!-- Make -->
+        <step>
+            <position>#runButton</position>
+            <tip>&lt;b&gt;Make&lt;/b&gt;</tip>
+            <direction>d</direction>
+            <progressor>NONE</progressor>
+        </step>
+    </project>
+</level>
